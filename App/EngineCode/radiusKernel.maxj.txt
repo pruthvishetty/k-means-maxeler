@@ -1,0 +1,61 @@
+/**
+ * k-means clustering is a method of vector quantization, 
+ * originally from signal processing, that is popular for 
+ * cluster analysis in data mining. k-means clustering aims 
+ * to partition n observations into k clusters in which each 
+ * observation belongs to the cluster with the nearest mean, 
+ * serving as a prototype of the cluster. This results in a 
+ * partitioning of the data space into Voronoi cells.
+ * 
+ * Taking reference from RadiusSolutionKernel & Package from Maxeler
+ */
+package radius;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.Counter;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.memory.Memory;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVector;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVectorType;
+import com.maxeler.maxcompiler.v2.utils.MathUtils;
+
+class radiusKernel extends Kernel {
+
+	radiusKernel(KernelParameters parameters) {
+		super(parameters
+		    int neigbors,
+    		int centroids,
+    		int threshold,
+    		int datapoints);
+    	public static String[] map_status = { "mapped", "unmapped"};
+    	DFEVectorType<DFEVar> kmeans_vec = new DFEVectorType<DFEVar>(type, datapoints);
+    	List<Memory<DFEVar>> neighbors_vec = new ArrayList<Memory<DFEVar>>(neighbors/2);
+    	List<Memory<DFEVar>> iter = new ArrayList<Memory<DFEVar>>(neighbors/2);
+        DFEVectorType<DFEVar> centroid_vec = new DFEVectorType<DFEVar>(type, centroids);
+            for (int i = 0; i < threshold; i++) {
+            	int j = 0;
+    		    neighbor_vec.add(map_status);
+            }
+        for(int i = 0 ; i < centroids/2 ; i++) {
+	     	temp = zero;
+		    for (int j=0; j<neighbors/2; j++) {
+		    	temp += (kmeans_vec[j]-data[i+i+j])*(kmeans_vec[j]-data[j]);
+		    }
+	    }
+
+		DFEVar kmeans_type = counterVal.cast(type);
+		for(int i = 0 ; i < centroids ; i++) {
+			total[i] <== dist[i] < centroid_vec[i] ? kmeans_type*(neighbors/2) + i;
+		}
+
+		io.output("output",total, kmeans_vec);
+    		
+	
+	}
+}
